@@ -1,0 +1,9 @@
+.body{
+    background: rgba(63, 183, 63, 0.792);
+}
+.box{
+    background-color: white;
+    border: 1px solid grey;
+    min-height: 50px;
+    font-size: 2rem
+}
