@@ -14,14 +14,6 @@ const PlayersCollection = mongoose.connection.collection("Players");
 const TeamsCollection = mongoose.connection.collection("Teams");
 
 /**
-
-Handles POST request to fetch box score from NBA API and update PlayersCollection with new box scores
-@param {Object} req - The request object containing game ID in req.body
-@param {Object} res - The response object to be returned
-@returns {Promise<Object>} - The response object containing player statistics
-*/
-
-/**
  * Handles POST request to fetch box score from NBA API and update PlayersCollection with new box scores
  * 
  * @param {Object} req - The request object containing gameId in req.body
