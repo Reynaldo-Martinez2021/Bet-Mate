@@ -1,5 +1,6 @@
-In progress web application
-Get Started:
+In progress web application <br>
+
+**Get Started:** <br>
 Install the depedencies:
 ```
 npm i axios cors dotenv express express-rate-limit jquery jsdom mongodb mongoose nodemon
