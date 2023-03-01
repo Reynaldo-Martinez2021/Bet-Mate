@@ -2,7 +2,7 @@
   "name": "betmate",
   "version": "1.0.0",
   "description": "",
-  "main": "/sport-radar/index.js",
+  "main": "C:/Users/reyna/Desktop/bet-mate/sport-radar/index.js",
   "scripts": {
     "start": "node index",
     "dev": "nodemon index"

@@ -3,7 +3,7 @@ import requests
 import json
 
 # Read in game IDs from a file
-with open("gameIds.txt", "r") as f:
+with open("C:\\Users\\reyna\Desktop\\bet-mate\sport-radar\scripts\gameIds.txt", "r") as f:
     game_ids = f.readlines()
 game_ids = [id.strip() for id in game_ids]
 
@@ -13,7 +13,7 @@ headers = {"Content-Type": "application/json"}
 api_key = "94yvfavqruvmk5vfev4tc5vs"
 
 try:
-    with open("responses.txt", "w") as f:
+    with open("C:\\Users\\reyna\Desktop\\bet-mate\sport-radar\scripts\\responses10.txt", "w") as f:
         for game_id in game_ids:
             data = {"gameId": game_id, "apiKey": api_key}
             response = requests.post(url, headers=headers, json=data)
@@ -23,10 +23,10 @@ try:
                 game_ids.remove(game_id)
             else:
                 break
-            time.sleep(1)
+            time.sleep(3)
 except Exception as e:
     print(e)
 
 # Save the updated list of game IDs to the same file
-with open("gameIds.txt", "w") as f:
+with open("C:\\Users\\reyna\Desktop\\bet-mate\sport-radar\scripts\gameIds.txt", "w") as f:
     f.write("\n".join(game_ids))
