@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios");
 const mongoose = require("mongoose");
+const ScheduleCollection = require("../database").ScheduleCollection;
 
 const scheduleSchema = new mongoose.Schema(
     {
@@ -41,16 +42,8 @@ const scheduleSchema = new mongoose.Schema(
     { collection: "Schedule" }
 );
 
-mongoose
-    .connect(
-        "mongodb+srv://knighthacks17:knighthacks6900@betmate.yqz1nbu.mongodb.net/BetMate?retryWrites=true&w=majority",
-        { useNewUrlParser: true, useUnifiedTopology: true }
-    )
-    .then()
-    .catch((err) => console.error("Could not connect to MongoDB", err));
 
 const Schedules = mongoose.model("Schedule", scheduleSchema);
-const ScheduleCollection = mongoose.connection.collection("Schedule");
 
 /**
  * Fetches the NBA season schedule for a given year and season type from the Sportradar API.

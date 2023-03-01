@@ -28,6 +28,8 @@ const playersSchema = new mongoose.Schema(
     { collection: "Players" }
 );
 
+const Players = mongoose.model("Players", playersSchema);
+
 mongoose
     .connect(
         "mongodb+srv://knighthacks17:knighthacks6900@betmate.yqz1nbu.mongodb.net/BetMate?retryWrites=true&w=majority",
@@ -36,7 +38,6 @@ mongoose
     .then()
     .catch((err) => console.error("Could not connect to MongoDB", err));
 
-const Players = mongoose.model("Players", playersSchema);
 const PlayersCollection = mongoose.connection.collection("Players");
 const TeamsCollection = mongoose.connection.collection("Teams");
 
