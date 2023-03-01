@@ -107,36 +107,52 @@ router.post("/odds/fetch-daily-player-props", async (req, res) => {
     }
 });
 
+const propsArray = [
+    "total points (incl. overtime)",
+    "total assists (incl. overtime)",
+    "total rebounds (incl. overtime)",
+    "total 3-point field goals (incl. overtime)",
+    "total points plus rebounds (incl. extra overtime)",
+    "total points plus assists (incl. extra overtime)",
+    "total rebounds plus assists (incl. extra overtime)",
+    "total points plus assists plus rebounds (incl. extra overtime)",
+];
+
+const books = ["MGM", "DraftKings", "FanDuel"];
+
 async function parseDailyProps(response) {
     const responseObj = response.data;
 
-    for (const props of responseObj.players_props)
-    {
-        const fullName = reverseName(props.player.name);
-        findPlayerByFullName(fullName);
-        break;
+    for (const props of responseObj.sport_schedule_sport_events_players_props) {
     }
 }
 
-async function findPlayerByFullName( fullName ) {
+async function findPlayerByFullName(fullName) {
     const nameArray = fullName.split(" ");
     const firstName = nameArray[0];
     const lastName = nameArray[nameArray.length - 1];
 
-    PlayersCollection.findOne({ firstName: firstName, lastName: lastName}, {id: 1})
-    .then((result) => {
-        if (result) {
-            console.log(`The id for ${firstName} ${lastName} is ${result.id}`);
-        } else {
-            console.log(`No player found with the name ${firstName} ${lastName}`);
-        }
-    })
-    .catch((error) => {
-        console.error(error);
-    });
+    PlayersCollection.findOne(
+        { firstName: firstName, lastName: lastName },
+        { id: 1 }
+    )
+        .then((result) => {
+            if (result) {
+                console.log(
+                    `The id for ${firstName} ${lastName} is ${result.id}`
+                );
+            } else {
+                console.log(
+                    `No player found with the name ${firstName} ${lastName}`
+                );
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+        });
 }
 
-function reverseName( string ) {
+function reverseName(string) {
     const org = string;
     const split = org.split(", ");
     const reverse = split.reverse();
