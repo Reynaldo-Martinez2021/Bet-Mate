@@ -26,7 +26,7 @@ router.post("/games/fetch-box-score", async (req, res) => {
     try {
         const gameSummaryAPI = `http://api.sportradar.us/nba/trial/v7/en/games/${gameId}/summary.json?api_key=${apiKey}`;
         const response = await axios.get(gameSummaryAPI);
-        const statLines = await parseGameSummary(response);
+        const statLines = await parseGameSummary(response, gameId);
 
         res.set("Content-Type", "application/json");
         console.log("stat line sent");
@@ -43,12 +43,12 @@ router.post("/games/fetch-box-score", async (req, res) => {
  * @param {Object} response - The game summary response object 
  * @returns {Promise<Array>} - An array of object containing player statistics
  */
-async function parseGameSummary(response) {
+async function parseGameSummary(response, gameId) {
     const responseObj = response.data;
     const statLines = [];
 
-    parsePlayers(responseObj.home.players, statLines);
-    parsePlayers(responseObj.away.players, statLines);
+    parsePlayers(responseObj.home.players, statLines, gameId);
+    parsePlayers(responseObj.away.players, statLines, gameId);
 
     return statLines;
 }
@@ -70,7 +70,7 @@ async function parsePlayers(players, statLines) {
             const update = {
                 $addToSet: {
                     boxScores: {
-                        id: id,
+                        id: gameId,
                         points: points,
                         rebounds: rebounds,
                         assists: assists,
@@ -82,7 +82,7 @@ async function parsePlayers(players, statLines) {
             PlayersCollection.findOneAndUpdate(filter, update, options);
             statLines.push({
                 full_name,
-                id,
+                gameId,
                 points,
                 rebounds,
                 assists,
