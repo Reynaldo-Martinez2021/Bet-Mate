@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const axios = require("axios");
 const mongoose = require("mongoose");
+const PlayersCollection = require("../database").PlayersCollection;
+const TeamsCollection = require("../database").TeamsCollection;
 
 const booksSchema = new mongoose.Schema({
     name: {
@@ -80,16 +82,6 @@ const playerPropSchema = new mongoose.Schema({
     },
 });
 
-mongoose
-    .connect(
-        "mongodb+srv://knighthacks17:knighthacks6900@betmate.yqz1nbu.mongodb.net/BetMate?retryWrites=true&w=majority",
-        { useNewUrlParser: true, useUnifiedTopology: true }
-    )
-    .then()
-    .catch((err) => console.error("Could not connect to MongoDB", err));
-
-const PlayersCollection = mongoose.connection.collection("Players");
-const TeamsCollection = mongoose.connection.collection("Teams");
 const Props = mongoose.model("Props", playerPropSchema);
 
 router.post("/odds/fetch-daily-player-props", async (req, res) => {

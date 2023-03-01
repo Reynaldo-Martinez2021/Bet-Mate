@@ -20,7 +20,6 @@ app.use(cors());
 app.use(express.json());
 
 // Import routes
-const indexRoutes = require('./routes/index');
 const getTeamsRoutes = require('./routes/teams');
 const getPlayersRoutes = require('./routes/players');
 const getScheduleRoutes = require('./routes/schedule');
@@ -28,7 +27,6 @@ const getGamesRoutes = require('./routes/games');
 const getOddsRoutes = require('./routes/odds');
 
 // Use routes
-app.use('/', indexRoutes);
 app.use('/', getTeamsRoutes);
 app.use('/', getPlayersRoutes);
 app.use('/', getScheduleRoutes);

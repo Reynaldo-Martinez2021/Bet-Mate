@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const axios = require("axios");
 const mongoose = require("mongoose");
+const PlayersCollection = require("../database").PlayersCollection;
+const TeamsCollection = require("../database").TeamsCollection;
 
 const boxScoreSchema = new mongoose.Schema({
     id: String,
@@ -29,17 +31,6 @@ const playersSchema = new mongoose.Schema(
 );
 
 const Players = mongoose.model("Players", playersSchema);
-
-mongoose
-    .connect(
-        "mongodb+srv://knighthacks17:knighthacks6900@betmate.yqz1nbu.mongodb.net/BetMate?retryWrites=true&w=majority",
-        { useNewUrlParser: true, useUnifiedTopology: true }
-    )
-    .then()
-    .catch((err) => console.error("Could not connect to MongoDB", err));
-
-const PlayersCollection = mongoose.connection.collection("Players");
-const TeamsCollection = mongoose.connection.collection("Teams");
 
 /**
  * Retrieves the averages for all players on a team's roster using the Seasonal Statistics (Season to Date) API.

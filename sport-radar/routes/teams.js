@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const axios = require("axios");
 const mongoose = require("mongoose");
+const TeamsCollection = require("../database").TeamsCollection;
 
 const playerSchema = new mongoose.Schema({
     id: String,
@@ -19,16 +20,7 @@ const teamSchema = new mongoose.Schema(
     { collection: "Teams" }
 );
 
-mongoose
-    .connect(
-        "mongodb+srv://knighthacks17:knighthacks6900@betmate.yqz1nbu.mongodb.net/BetMate?retryWrites=true&w=majority",
-        { useNewUrlParser: true, useUnifiedTopology: true }
-    )
-    .then()
-    .catch((err) => console.error("Could not connect to MongoDB", err));
-
 const Teams = mongoose.model("Teams", teamSchema);
-const TeamsCollection = mongoose.connection.collection("Teams");
 
 /**
  * Retrieves the NBA league hierarchy from the Sportradar API and returns the Teams Collection.
@@ -138,7 +130,8 @@ router.post("/team/fetch-team-profile", async (req, res) => {
         res.set("Content-Type", "application/json");
         return res.status(200).send(JSON.stringify(teamProfile));
     } catch (err) {
-        throw new Error("Error retrieving team profile data: " + err.message);
+       console.error(err);
+       return res.status(500).send(JSON.stringify({status: "ERROR"}));
     }
 });
 

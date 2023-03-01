@@ -1,17 +1,9 @@
 const router = require("express").Router();
 const axios = require("axios");
 const mongoose = require("mongoose");
+const PlayersCollection = require("../database").PlayersCollection;
+const TeamsCollection = require("../database").TeamsCollection;
 
-mongoose
-    .connect(
-        "mongodb+srv://knighthacks17:knighthacks6900@betmate.yqz1nbu.mongodb.net/BetMate?retryWrites=true&w=majority",
-        { useNewUrlParser: true, useUnifiedTopology: true }
-    )
-    .then()
-    .catch((err) => console.error("Could not connect to MongoDB", err));
-
-const PlayersCollection = mongoose.connection.collection("Players");
-const TeamsCollection = mongoose.connection.collection("Teams");
 
 /**
  * Handles POST request to fetch box score from NBA API and update PlayersCollection with new box scores
@@ -61,7 +53,7 @@ async function parseGameSummary(response, gameId) {
  * @returns {Promise<Array<Object>>} - An array of objects containing player statistics.
  * @throws {Error} - If there was an error updating a player in the database.
  */
-async function parsePlayers(players, statLines) {
+async function parsePlayers(players, statLines, gameId) {
     for (const player of players) {
         const { id, full_name, statistics: { three_points_made, rebounds, assists, points } } = player;
 
