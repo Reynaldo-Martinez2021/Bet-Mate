@@ -40,7 +40,7 @@ router.post("/team/league-hierarchy", async (req, res) => {
         let response = await axios.get(leagueHierarchyAPI);
 
         // check if collection is empty to add nba teams to Teams Collection
-        if (checkIfCollectionIsEmpty()) {
+        if (await checkIfCollectionIsEmpty()) {
             parseLeagueHierarchy(response);
         }
 

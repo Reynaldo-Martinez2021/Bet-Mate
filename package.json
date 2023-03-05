@@ -2,9 +2,9 @@
   "name": "bet-mate",
   "version": "1.0.0",
   "description": "In progress web application",
-  "main": "./sport-radar/index.js",
+  "main": "sport-radar/index.js",
   "scripts": {
-    "start": "node index",
+    "start": "node sport-radar/index.js",
     "dev": "nodemon index"
   },
   "keywords": [],

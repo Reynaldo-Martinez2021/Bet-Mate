@@ -39,8 +39,8 @@ async function parseGameSummary(response, gameId) {
     const responseObj = response.data;
     const statLines = [];
 
-    parsePlayers(responseObj.home.players, statLines, gameId);
-    parsePlayers(responseObj.away.players, statLines, gameId);
+    await parsePlayers(responseObj.home.players, statLines, gameId);
+    await parsePlayers(responseObj.away.players, statLines, gameId);
 
     return statLines;
 }
