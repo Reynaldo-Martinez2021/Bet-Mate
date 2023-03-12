@@ -25,6 +25,7 @@ const getPlayersRoutes = require('./routes/players');
 const getScheduleRoutes = require('./routes/schedule');
 const getGamesRoutes = require('./routes/games');
 const getOddsRoutes = require('./routes/odds');
+const loginRoutes = require('./routes/login');
 
 // Use routes
 app.use('/', getTeamsRoutes);
@@ -32,6 +33,7 @@ app.use('/', getPlayersRoutes);
 app.use('/', getScheduleRoutes);
 app.use('/', getGamesRoutes);
 app.use('/', getOddsRoutes);
+app.use('/login', loginRoutes);
 
 app.listen(port, function () {
     console.log(`Running on port ${port}`);

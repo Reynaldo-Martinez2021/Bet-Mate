@@ -3,7 +3,7 @@ In progress web application <br>
 **Get Started:** <br>
 Install the depedencies:
 ```
-npm i axios cors dotenv express express-rate-limit jquery jsdom mongodb mongoose nodemon
+npm i
 ```
 Create an .env file
 ```
@@ -14,4 +14,9 @@ TEAMS_COLLECTION_NAME = "Teams"
 PLAYERS_COLLECTION_NAME = "Players"
 SCHEDULE_COLLECTION_NAME = "Schedule"
 PROPS_COLLECTION_NAME = "Props"
+```
+
+Run dev server
+```
+npm run dev
 ```

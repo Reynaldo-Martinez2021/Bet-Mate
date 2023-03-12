@@ -125,7 +125,7 @@ router.post("/odds/fetch-daily-player-props", async (req, res) => {
 function loadJsonFileToArray() {
     try {
         const data = fs.readFileSync(
-            "C:/Users/reyna/Desktop/bet-mate/sport-radar/json-responses/playerMappings.json"
+            "../json-responses/playerMappings.json"
         );
         return JSON.parse(data).mappings;
     } catch (error) {
