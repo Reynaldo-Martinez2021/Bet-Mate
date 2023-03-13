@@ -52,15 +52,7 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    access_token: {
-        type: String,
-        required: true
-    },
     date_created: {
-        type: Date,
-        required: true
-    },
-    last_login: {
         type: Date,
         required: true
     },

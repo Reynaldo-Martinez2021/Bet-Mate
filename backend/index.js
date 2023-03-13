@@ -11,8 +11,13 @@ const port = process.env.PORT || 8080;
 const app = express();
 const limit = rateLimit({
     windowsMs: 1*60*1000,
-    max:30
+    max:30 // 30 per min
 });
+
+const loginLimit = rateLimit({
+    windowsMs: 30*1000,
+    max: 5 // 5 per 30 seconds
+})
 
 app.use(limit);
 app.set('trust proxy', 1);
@@ -33,6 +38,7 @@ app.use('/', getPlayersRoutes);
 app.use('/', getScheduleRoutes);
 app.use('/', getGamesRoutes);
 app.use('/', getOddsRoutes);
+app.use('/login', loginLimit);
 app.use('/login', loginRoutes);
 
 app.listen(port, function () {
