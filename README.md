@@ -1,11 +1,14 @@
+# **Information:**
 In progress web application <br>
 
-**Get Started:** <br>
-Install the depedencies:
+# **Get Started:** 
+**Install the latest version of Node.js:** <br>
+https://nodejs.org/en/ <br><br>
+**Install the depedencies:**
 ```
 npm i
 ```
-Create an .env file
+**Create an .env file:**
 ```
 PORT = "8080"
 MONGO_CONNECTION_STRING = "YOUR_MONGO_CONNECTION_STRING_HERE"
@@ -23,7 +26,7 @@ BETMATE_HOME_PAGE = "http://localhost:5500/backend/html"
 BETMATE_BACKEND_HOME_PAGE = "http://localhost:8080"
 ```
 
-Run dev server
+**Run dev server:**
 ```
 npm run dev
 ```
