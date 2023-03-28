@@ -1,9 +1,16 @@
 .body{
-    background: rgba(63, 183, 63, 0.792);
+    background: rgba(37, 196, 37, 0.792);
 }
 .box{
     background-color: white;
     border: 1px solid grey;
     min-height: 50px;
     font-size: 2rem
+}
+.form-check-input:checked{
+    background-color:rgba(37, 196, 37, 0.792)!important;
+}
+.form-text{
+    color: black!important;
+    font-size:  15px !important;
 }
